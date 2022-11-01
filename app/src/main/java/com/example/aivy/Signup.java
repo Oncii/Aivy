@@ -217,7 +217,8 @@ public class Signup extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         HashMap<String,Object> dataUser = new HashMap<>();
                         dataUser.put("username", username);
-                        dataUser.put("id", getRandomString(6));
+                        dataUser.put("password", password);
+                        dataUser.put("email", email);
 
                         FirebaseUser currentUser = mAuth.getCurrentUser();
                         String uid = currentUser.getUid();
@@ -242,6 +243,7 @@ public class Signup extends AppCompatActivity {
         }
     }
 
+    //dataUser.put("id", getRandomString(6));
     private String getRandomString(int i) {
         String characters = "abcdefghijklmnopqrstuvwxyz1234567890";
         StringBuilder result = new StringBuilder();

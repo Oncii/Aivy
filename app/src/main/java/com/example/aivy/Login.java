@@ -147,14 +147,14 @@ public class Login extends AppCompatActivity {
     }
     public void loginUser(View view) {
 
-        if(!isConnected(this)) {
-            noInt();
+        if(isConnected(this)) {
+            isUser();
         }
         else if(!validateEmail() | !validatePassword()) {
             return;
         }
         else {
-            isUser();
+            noInt();
         }
     }
     private void isUser(){

@@ -14,6 +14,14 @@
         android:theme="@style/Theme.Aivy"
         tools:targetApi="31">
         <activity
+            android:name=".About_Application"
+            android:exported="false"
+            android:theme="@style/Theme.Aivy.noActionBar.blackStatusBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Edit_Profile"
             android:exported="false"
             android:theme="@style/Theme.Aivy.noActionBar2">

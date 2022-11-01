@@ -1,5 +1,6 @@
 package com.example.aivy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
@@ -13,8 +14,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Set;
 
@@ -37,14 +43,18 @@ public class Edit_Profile extends AppCompatActivity {
 
     //For Firebase
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        //For Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String uid = currentUser.getUid();
 
         //Assignment for the Animation
         set_sub_edit = AnimationUtils.loadAnimation(this, R.anim.set_sub_edit_anim);
@@ -74,6 +84,24 @@ public class Edit_Profile extends AppCompatActivity {
         edit_profile.setAnimation(e_profile);
         edit_can.setAnimation(e_cancel);
         edit_up.setAnimation(e_update);
+
+        db.collection("user").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+                        String username = document.get("username",String.class);
+                        String password = document.get("password",String.class);
+                        String email = document.get("email",String.class);
+
+                        edit_user.getEditText().setText(username);
+                        edit_pass.getEditText().setText(password);
+                        edit_em.getEditText().setText(email);
+                    }
+                }
+            }
+        });
 
         edit_can.setOnClickListener(new View.OnClickListener() {
             @Override

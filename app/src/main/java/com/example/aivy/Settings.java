@@ -87,6 +87,23 @@ public class Settings extends AppCompatActivity {
                 startActivity(intent, options.toBundle());
             }
         });
+
+        settings_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Settings.this, About_Application.class);
+
+                Pair[] pairs = new Pair[5];
+                pairs[0] = new Pair<View, String>(settings_edit, "btn_1");
+                pairs[1] = new Pair<View, String>(settings_about, "btn_2");
+                pairs[2] = new Pair<View, String>(settings_log, "btn_3");
+                pairs[3] = new Pair<View, String>(settings_ban, "set_banner");
+                pairs[4] = new Pair<View, String>(settings_back, "set_back");
+
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Settings.this, pairs);
+                startActivity(intent, options.toBundle());
+            }
+        });
     }
 
     public void backToDashboard(View view){
