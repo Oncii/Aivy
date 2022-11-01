@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StudyBuddy AI</string>
+    <string name="forgot_info">Enter email to receive reset link</string>
+</resources>
