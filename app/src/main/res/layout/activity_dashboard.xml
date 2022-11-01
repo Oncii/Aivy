@@ -52,7 +52,8 @@
             android:layout_height="150dp"
             android:layout_marginRight="6dp"
             android:src="@drawable/aivy_icon"
-            android:elevation="10dp"/>
+            android:elevation="10dp"
+            android:transitionName="btn_1"/>
 
         <ImageView
             android:id="@+id/dashboard_subjects"
@@ -77,7 +78,8 @@
             android:layout_height="150dp"
             android:src="@drawable/friends_icon"
             android:layout_marginRight="6dp"
-            android:elevation="10dp"/>
+            android:elevation="10dp"
+            android:transitionName="btn_2"/>
 
         <ImageView
             android:id="@+id/dashboard_messages"
@@ -90,12 +92,14 @@
     </LinearLayout>
 
     <ImageView
+        android:onClick="intoSettings"
         android:id="@+id/dashboard_settings"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/settings_icon"
         android:elevation="10dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:transitionName="btn_3"/>
 
 </LinearLayout>

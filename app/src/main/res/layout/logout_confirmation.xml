@@ -6,13 +6,13 @@
     android:orientation="vertical"
     android:background="@drawable/forget_pass_popup"
     android:layout_gravity="center"
-    android:id="@+id/noInt_dialogContainer">
+    android:id="@+id/logout_dialogContainer">
 
     <TextView
-        android:id="@+id/noInt_title"
+        android:id="@+id/logout_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="No Internet Connection"
+        android:text="Logout"
         android:fontFamily="@font/ubuntu"
         android:textColor="@color/white"
         android:textSize="18dp"
@@ -21,10 +21,11 @@
         android:background="@drawable/reset_title"/>
 
     <TextView
-        android:id="@+id/noInt_info"
+        android:id="@+id/logout_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please connect to the internet to proceed!"
+        android:text="Are you sure you want to log out?"
+        android:textColor="#43B0F1"
         android:fontFamily="@font/ubuntu"
         android:layout_gravity="center"
         android:layout_marginLeft="12dp"
@@ -40,27 +41,26 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/noInt_cancel"
+            android:id="@+id/logout_no"
             android:layout_width="110dp"
             android:layout_height="45dp"
             android:layout_marginRight="12dp"
-            android:background="@drawable/cancel_button"
-            android:textAllCaps="false"
-            android:text="Cancel"
+            android:background="@drawable/logout_no"
+            android:text="No"
+            android:textStyle="bold"
             android:fontFamily="@font/ubuntu"
-            android:textColor="@color/azure"
-            android:transitionName="login_log"/>
+            android:textColor="@color/white"/>
 
         <Button
-            android:id="@+id/noInt_connect"
+            android:id="@+id/logout_yes"
             android:layout_width="110dp"
             android:layout_height="45dp"
             android:layout_marginLeft="12dp"
-            android:background="@drawable/signup_button"
-            android:textAllCaps="false"
-            android:text="Connect"
-            android:fontFamily="@font/ubuntu"
-            android:transitionName="login_log"/>
+            android:background="@drawable/logout_yes"
+            android:textStyle="bold"
+            android:text="Yes"
+            android:textColor="#43B0F1"
+            android:fontFamily="@font/ubuntu"/>
     </LinearLayout>
 
 

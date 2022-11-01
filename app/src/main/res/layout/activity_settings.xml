@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal"
+        android:background="#F3FAFF"
+        android:gravity="right">
+
+        <ImageView
+            android:onClick="backToDashboard"
+            android:id="@+id/settings_back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back_button"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="90dp"/>
+
+        <TextView
+            android:id="@+id/settings_banner"
+            android:layout_width="220dp"
+            android:layout_height="75dp"
+            android:text="Settings"
+            android:textSize="24dp"
+            android:fontFamily="@font/ubuntu"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:paddingRight="10dp"
+            android:background="@drawable/dashboard_title"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/settings_sub_general"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:text="General"
+        android:paddingLeft="7dp"
+        android:fontFamily="@font/ubuntu"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:background="#0090E7"/>
+
+
+    <Button
+        android:id="@+id/settings_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        android:textAllCaps="false"
+        android:text="Edit Profile"
+        android:paddingLeft="16dp"
+        android:fontFamily="@font/ubuntu"
+        android:textColor="#43B0F1"
+        android:textSize="18dp"
+        android:textAlignment="viewStart"
+        android:background="@drawable/settings_buttons"
+        android:elevation="50dp"
+        android:transitionName="btn_1"/>
+
+    <Button
+        android:id="@+id/settings_about_application"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        android:textAllCaps="false"
+        android:text="About Application"
+        android:paddingLeft="16dp"
+        android:fontFamily="@font/ubuntu"
+        android:textColor="#43B0F1"
+        android:textSize="18dp"
+        android:textAlignment="viewStart"
+        android:background="@drawable/settings_buttons"
+        android:elevation="50dp"
+        android:transitionName="btn_2"/>
+
+    <Button
+        android:onClick="logoutConfirmation"
+        android:id="@+id/settings_logout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        android:textAllCaps="false"
+        android:text="Logout"
+        android:fontFamily="@font/ubuntu"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textAlignment="center"
+        android:background="@drawable/signup_button"
+        android:elevation="50dp"
+        android:textStyle="bold"
+        android:transitionName="btn_3"/>
+
+</LinearLayout>
