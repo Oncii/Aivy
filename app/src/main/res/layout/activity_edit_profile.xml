@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Edit_Profile"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal"
+        android:background="#F3FAFF"
+        android:gravity="right">
+
+        <ImageView
+            android:onClick="backToSettings"
+            android:id="@+id/edit_back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back_button"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="90dp"
+            android:transitionName="set_back"/>
+
+        <TextView
+            android:id="@+id/edit_banner"
+            android:layout_width="220dp"
+            android:layout_height="75dp"
+            android:text="Settings"
+            android:textSize="24dp"
+            android:fontFamily="@font/ubuntu"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:paddingRight="10dp"
+            android:background="@drawable/dashboard_title"
+            android:transitionName="set_banner"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/settings_sub_edit"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:text="Edit Profile"
+        android:paddingLeft="7dp"
+        android:fontFamily="@font/ubuntu"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:background="#0090E7"/>
+
+    <ImageView
+        android:id="@+id/edit_profile_pic"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center"
+        android:src="@drawable/sample_profile"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_username"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        app:boxBackgroundColor="#F3FAFF"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        android:transitionName="btn_1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntu"
+            android:hint="Username"
+            android:textSize="12dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_email"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        app:boxBackgroundColor="#F3FAFF"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        android:transitionName="btn_2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntu"
+            android:hint="Email"
+            android:textSize="12dp"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_password"
+        style="@style/TextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginLeft="24dp"
+        app:boxBackgroundColor="#F3FAFF"
+        app:passwordToggleEnabled="true"
+        app:boxCornerRadiusBottomEnd="14dp"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        app:boxCornerRadiusTopStart="14dp"
+        android:transitionName="btn_3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntu"
+            android:hint="Password"
+            android:textSize="12dp"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/edit_cancel"
+            android:layout_width="149dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/cancel_button"
+            android:textAllCaps="false"
+            android:textSize="14dp"
+            android:text="Cancel"
+            android:textColor="@color/azure" />
+
+        <Button
+            android:id="@+id/edit_update"
+            android:layout_width="149dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/signup_button"
+            android:textAllCaps="false"
+            android:textSize="14dp"
+            android:text="Update" />
+    </LinearLayout>
+
+</LinearLayout>

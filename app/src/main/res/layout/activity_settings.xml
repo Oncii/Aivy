@@ -21,7 +21,8 @@
             android:layout_height="30dp"
             android:src="@drawable/back_button"
             android:layout_marginTop="25dp"
-            android:layout_marginRight="90dp"/>
+            android:layout_marginRight="90dp"
+            android:transitionName="set_back"/>
 
         <TextView
             android:id="@+id/settings_banner"
@@ -33,7 +34,8 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:paddingRight="10dp"
-            android:background="@drawable/dashboard_title"/>
+            android:background="@drawable/dashboard_title"
+            android:transitionName="set_banner"/>
 
     </LinearLayout>
 

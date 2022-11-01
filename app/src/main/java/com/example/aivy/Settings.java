@@ -3,12 +3,14 @@ package com.example.aivy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -68,6 +70,23 @@ public class Settings extends AppCompatActivity {
         //Setting of the Animation
         settings_ban.setAnimation(setting_banner);
         settings_sub_gen.setAnimation(setting_sub_gen);
+
+        settings_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Settings.this, Edit_Profile.class);
+
+                Pair[] pairs = new Pair[5];
+                pairs[0] = new Pair<View, String>(settings_edit, "btn_1");
+                pairs[1] = new Pair<View, String>(settings_about, "btn_2");
+                pairs[2] = new Pair<View, String>(settings_log, "btn_3");
+                pairs[3] = new Pair<View, String>(settings_ban, "set_banner");
+                pairs[4] = new Pair<View, String>(settings_back, "set_back");
+
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Settings.this, pairs);
+                startActivity(intent, options.toBundle());
+            }
+        });
     }
 
     public void backToDashboard(View view){

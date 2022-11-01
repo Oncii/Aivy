@@ -30,11 +30,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Random;
 
 public class Signup extends AppCompatActivity {
 
     //For Firebase Authentication
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     //Animations
     Animation signup_inputs, signup_texts, signup_buttons;
@@ -58,6 +64,7 @@ public class Signup extends AppCompatActivity {
 
         //For Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         //Assignment for the Animations
         signup_inputs = AnimationUtils.loadAnimation(this, R.anim.login_inputs_anim);
@@ -197,6 +204,7 @@ public class Signup extends AppCompatActivity {
     }
 
     public void registerUser(View view) {
+        final String username = sign_username.getEditText().getText().toString().trim();
         String email = sign_email.getEditText().getText().toString().trim();
         String password = sign_password.getEditText().getText().toString().trim();
 
@@ -207,18 +215,42 @@ public class Signup extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Intent intent = new Intent(Signup.this, Dashboard.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
+                        HashMap<String,Object> dataUser = new HashMap<>();
+                        dataUser.put("username", username);
+                        dataUser.put("id", getRandomString(6));
+
+                        FirebaseUser currentUser = mAuth.getCurrentUser();
+                        String uid = currentUser.getUid();
+
+                        db.collection("user").document(uid).set(dataUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Intent intent = new Intent(Signup.this, Dashboard.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+
                     } else if (!isConnected(Signup.this)) {
                         noInt();
                     } else {
-                        Toast.makeText(Signup.this, "Signup Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Signup.this, "Something went wrong, signup failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
+    }
+
+    private String getRandomString(int i) {
+        String characters = "abcdefghijklmnopqrstuvwxyz1234567890";
+        StringBuilder result = new StringBuilder();
+        while (i>0){
+            Random rand = new Random();
+            result.append(characters.charAt(rand.nextInt(characters.length())));
+            i--;
+        }
+        return result.toString();
     }
 
     private void noInt() {
