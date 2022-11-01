@@ -7,9 +7,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/aivy_icon"
+        android:icon="@drawable/sb_logo_only"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/aivy_icon"
+        android:roundIcon="@drawable/sb_logo_only"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aivy"
         tools:targetApi="31">

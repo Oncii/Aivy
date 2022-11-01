@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "653518941632",
+    "project_id": "studybuddy-aivy",
+    "storage_bucket": "studybuddy-aivy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653518941632:android:751992e62e5ec6e31eec25",
+        "android_client_info": {
+          "package_name": "com.example.aivy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653518941632-oup49lmevbf5sggs53oulg7ug3cmhnt7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFhXeIltebpHmwW0eoRAmTf5k9MnUmUT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653518941632-oup49lmevbf5sggs53oulg7ug3cmhnt7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

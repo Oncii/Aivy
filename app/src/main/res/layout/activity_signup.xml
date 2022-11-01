@@ -144,6 +144,7 @@
             android:transitionName="login_log"/>
 
         <Button
+            android:onClick="registerUser"
             android:id="@+id/signup_signup"
             android:layout_width="149dp"
             android:layout_height="55dp"
