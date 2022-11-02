@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Chats">
+
+    <LinearLayout
+        android:id="@+id/upper_chat"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#F3FAFF"
+        android:gravity="right"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:onClick="backToFriendsFromChat"
+            android:id="@+id/chat_back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="90dp"
+            android:src="@drawable/back_button"
+            android:transitionName="set_back" />
+
+        <TextView
+            android:id="@+id/chat_user_banner"
+            android:layout_width="220dp"
+            android:layout_height="75dp"
+            android:background="@drawable/dashboard_title"
+            android:fontFamily="@font/ubuntu"
+            android:gravity="center"
+            android:paddingRight="10dp"
+            android:text="Chat"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:transitionName="set_banner" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/user_input_area"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/chat_text_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvChats">
+
+        <EditText
+            android:id="@+id/chat_input_box"
+            android:layout_width="298dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="75dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/chat_box_background"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/send_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/send_button" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChats"
+        android:layout_width="396dp"
+        android:layout_height="633dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:paddingRight="18dp"
+        android:overScrollMode="never"
+        android:paddingLeft="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/user_input_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upper_chat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

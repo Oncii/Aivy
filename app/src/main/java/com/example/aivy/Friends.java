@@ -2,8 +2,6 @@ package com.example.aivy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
@@ -115,6 +113,13 @@ public class Friends extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull FriendViewHolder holder, int position, @NonNull Friend model) {
                 String uidFriend = getSnapshots().getSnapshot(position).getId();
                 holder.setList(uidFriend);
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        goChatRoom(model.getIdChatRoom(), uidFriend);
+                    }
+                });
             }
 
             @NonNull
@@ -256,10 +261,19 @@ public class Friends extends AppCompatActivity {
     }
 
     private void goChatRoom(String idChatRoom, String uidFriend) {
+        Intent intent = new Intent(Friends.this, Chats.class);
+        intent.putExtra("idChatRoom",idChatRoom);
+        intent.putExtra("uidFriend",uidFriend);
+        startActivity(intent);
     }
 
     public void backToDashboardFromFriends(View view){
         Intent intent = new Intent(Friends.this, Dashboard.class);
+        startActivity(intent);
+    }
+
+    public void intoMessagesFromFriends(View view){
+        Intent intent = new Intent(Friends.this, Messages.class);
         startActivity(intent);
     }
 }

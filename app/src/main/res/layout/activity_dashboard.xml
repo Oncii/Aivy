@@ -83,6 +83,7 @@
             android:transitionName="btn_2"/>
 
         <ImageView
+            android:onClick="intoMessages"
             android:id="@+id/dashboard_messages"
             android:layout_width="150dp"
             android:layout_height="150dp"

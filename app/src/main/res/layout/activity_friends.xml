@@ -66,6 +66,7 @@
             android:src="@drawable/add_friend"/>
 
         <ImageView
+            android:onClick="intoMessagesFromFriends"
             android:id="@+id/friends_chat_btn"
             android:layout_width="60dp"
             android:layout_height="60dp"
