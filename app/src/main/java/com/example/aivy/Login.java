@@ -147,14 +147,14 @@ public class Login extends AppCompatActivity {
     }
     public void loginUser(View view) {
 
-        if(isConnected(this)) {
-            isUser();
+        if(!isConnected(this)) {
+            noInt();
         }
         else if(!validateEmail() | !validatePassword()) {
             return;
         }
         else {
-            noInt();
+            isUser();
         }
     }
     private void isUser(){
@@ -228,5 +228,6 @@ public class Login extends AppCompatActivity {
         });
         forgot_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         forgot_dialog.show();
+        forgot_dialog.setCanceledOnTouchOutside(false);
     }
 }

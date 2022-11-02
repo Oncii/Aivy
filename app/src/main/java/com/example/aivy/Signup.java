@@ -219,6 +219,7 @@ public class Signup extends AppCompatActivity {
                         dataUser.put("username", username);
                         dataUser.put("password", password);
                         dataUser.put("email", email);
+                        dataUser.put("id", getRandomString(6));
 
                         FirebaseUser currentUser = mAuth.getCurrentUser();
                         String uid = currentUser.getUid();

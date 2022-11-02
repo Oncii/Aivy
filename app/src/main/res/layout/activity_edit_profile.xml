@@ -58,6 +58,29 @@
         android:layout_gravity="center"
         android:src="@drawable/sample_profile"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/edit_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User ID: "
+            android:fontFamily="@font/ubuntu"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/edit_random_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:fontFamily="@font/ubuntu"/>
+
+    </LinearLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edit_username"
         style="@style/TextInputLayoutStyle"
@@ -146,6 +169,7 @@
             android:layout_height="55dp"
             android:layout_marginTop="12dp"
             android:layout_marginRight="2dp"
+            android:fontFamily="@font/ubuntu"
             android:background="@drawable/cancel_button"
             android:textAllCaps="false"
             android:textSize="14dp"
@@ -158,6 +182,7 @@
             android:layout_height="55dp"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/ubuntu"
             android:background="@drawable/signup_button"
             android:textAllCaps="false"
             android:textSize="14dp"

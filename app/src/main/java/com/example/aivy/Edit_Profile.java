@@ -3,6 +3,7 @@ package com.example.aivy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ public class Edit_Profile extends AppCompatActivity {
     ImageView edit_back_button, edit_profile;
 
     //Variables for the TextView
-    TextView edit_ban, settings_sub_ed;
+    TextView edit_ban, settings_sub_ed, edit_user_i, edit_rand_i;
 
     //Variables for the TextInputLayout
     TextInputLayout edit_user, edit_em, edit_pass;
@@ -45,6 +46,7 @@ public class Edit_Profile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +71,8 @@ public class Edit_Profile extends AppCompatActivity {
         //Assignment for the TextView
         edit_ban = findViewById(R.id.edit_banner);
         settings_sub_ed = findViewById(R.id.settings_sub_edit);
+        edit_user_i = findViewById(R.id.edit_user_id);
+        edit_rand_i = findViewById(R.id.edit_random_id);
 
         //Assignment for the TextInputLayout
         edit_user = findViewById(R.id.edit_username);
@@ -94,10 +98,12 @@ public class Edit_Profile extends AppCompatActivity {
                         String username = document.get("username",String.class);
                         String password = document.get("password",String.class);
                         String email = document.get("email",String.class);
+                        String id = document.get("id",String.class);
 
                         edit_user.getEditText().setText(username);
                         edit_pass.getEditText().setText(password);
                         edit_em.getEditText().setText(email);
+                        edit_rand_i.setText(id);
                     }
                 }
             }

@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ubuntu"
                 android:hint="Email"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -73,6 +73,7 @@
         android:gravity="center">
 
         <ImageView
+            android:onClick="intoFriends"
             android:id="@+id/dashboard_friends"
             android:layout_width="150dp"
             android:layout_height="150dp"

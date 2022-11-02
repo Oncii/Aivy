@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="350dp"
-    android:layout_height="210dp"
+    android:layout_height="215dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/forget_pass_popup"
     android:layout_gravity="center">
-    
+
     <TextView
-        android:id="@+id/forgot_title"
+        android:id="@+id/add_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="Reset Password"
+        android:text="Add a friend"
         android:fontFamily="@font/ubuntu"
         android:textColor="@color/white"
         android:textSize="18dp"
@@ -20,9 +20,9 @@
         android:background="@drawable/reset_title"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/forgot_email"
+        android:id="@+id/add_user_id"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="12dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         android:layout_width="match_parent"
@@ -39,8 +39,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu"
             android:textSize="14dp"
-            android:hint="@string/forgot_info"
-            android:inputType="textEmailAddress"/>
+            android:hint="Enter User ID"
+            android:inputType="text"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,10 +51,9 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/forgot_cancel"
+            android:id="@+id/add_cancel"
             android:layout_width="110dp"
             android:layout_height="45dp"
-            android:layout_marginTop="2dp"
             android:layout_marginRight="12dp"
             android:textAllCaps="false"
             android:background="@drawable/cancel_button"
@@ -64,14 +63,13 @@
             android:transitionName="login_log"/>
 
         <Button
-            android:id="@+id/forgot_submit"
+            android:id="@+id/add_add"
             android:layout_width="110dp"
             android:layout_height="45dp"
             android:layout_marginLeft="12dp"
             android:textAllCaps="false"
-            android:layout_marginTop="2dp"
             android:background="@drawable/signup_button"
-            android:text="Submit"
+            android:text="Add"
             android:fontFamily="@font/ubuntu"
             android:transitionName="login_log"/>
     </LinearLayout>

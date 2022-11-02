@@ -83,6 +83,11 @@ public class Dashboard extends AppCompatActivity {
         };
     }
 
+    public void intoFriends(View view){
+        Intent intent = new Intent(Dashboard.this, Friends.class);
+        startActivity(intent);
+    }
+
     public void intoSettings(View view){
         Intent intent = new Intent(Dashboard.this, Settings.class);
 

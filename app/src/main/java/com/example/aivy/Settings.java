@@ -106,7 +106,7 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    public void backToDashboard(View view){
+    public void backToDashboardFromSettings(View view){
         Intent intent = new Intent(Settings.this, Dashboard.class);
         startActivity(intent);
     }

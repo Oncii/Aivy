@@ -15,7 +15,7 @@
         android:gravity="right">
 
         <ImageView
-            android:onClick="backToDashboard"
+            android:onClick="backToDashboardFromSettings"
             android:id="@+id/settings_back_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
