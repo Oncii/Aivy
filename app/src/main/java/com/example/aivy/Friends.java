@@ -2,6 +2,9 @@ package com.example.aivy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -9,7 +12,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -17,6 +22,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.aivy.model.Friend;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -37,12 +45,15 @@ public class Friends extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseFirestore db;
     private String uid;
+    private RecyclerView rvFriend;
+    //private LinearLayoutManager mLayoutManager;
+    private FirestoreRecyclerAdapter<Friend, FriendViewHolder> adapter;
 
     //Variables for the Animations
     Animation friends_ban, friends_a_btn, friends_r_btn, friends_c_btn;
 
     //Variables for the TextView
-    TextView f_banner, no_f_yet;
+    TextView f_banner;
 
     //Variables for the ImageView
     ImageView f_back_btn, f_add_btn, f_request_btn, f_chat_btn;
@@ -70,7 +81,6 @@ public class Friends extends AppCompatActivity {
 
         //Assignment for the TextView
         f_banner = findViewById(R.id.friends_banner);
-        no_f_yet = findViewById(R.id.no_friends_yet);
 
         //Assignment for the Imageview
         f_back_btn = findViewById(R.id.friends_back_btn);
@@ -84,14 +94,44 @@ public class Friends extends AppCompatActivity {
         f_request_btn.setAnimation(friends_r_btn);
         f_chat_btn.setAnimation(friends_c_btn);
 
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        uid = currentUser.getUid();
+
+        rvFriend = findViewById(R.id.rv_Friends);
+
+        //mLayoutManager = new LinearLayoutManager(this);
+        // mLayoutManager.setReverseLayout(true);
+        //mLayoutManager.setStackFromEnd(true);
+
+        rvFriend.setHasFixedSize(true);
+        //rvFriend.setLayoutManager(mLayoutManager);
+
+        FirestoreRecyclerOptions<Friend> options = new FirestoreRecyclerOptions.Builder<Friend>()
+                .setQuery(db.collection("user").document(uid).collection("friend"), Friend.class)
+                .build();
+
+        adapter = new FirestoreRecyclerAdapter<Friend, FriendViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull FriendViewHolder holder, int position, @NonNull Friend model) {
+                String uidFriend = getSnapshots().getSnapshot(position).getId();
+                holder.setList(uidFriend);
+            }
+
+            @NonNull
+            @Override
+            public FriendViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.friend_list, parent, false);
+                return new FriendViewHolder(view);
+            }
+        };
+
+        rvFriend.setAdapter(adapter);
+        adapter.startListening();
     }
 
     public void addFriend(View view){
         TextInputLayout add_user;
         Button add_can, add_ad;
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        uid = currentUser.getUid();
 
         add_friend_dialog.setContentView(R.layout.adding_friends);
 
@@ -143,7 +183,35 @@ public class Friends extends AppCompatActivity {
         add_friend_dialog.show();
     }
 
-    private void checkUserID(String uidFriend) {
+    public class FriendViewHolder extends RecyclerView.ViewHolder {
+        View mView;
+        ImageView user_p;
+        TextView user_n;
+        public FriendViewHolder(View itemView){
+            super(itemView);
+            mView = itemView;
+            user_p = mView.findViewById(R.id.user_pic);
+            user_n = mView.findViewById(R.id.user_name);
+        }
+
+        public void setList(String uidFriend){
+            db.collection("user").document(uidFriend).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if(documentSnapshot.exists()){
+                            String username = documentSnapshot.get("username", String.class);
+                            user_n.setText(username);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+
+    private void checkUserID(final String uidFriend) {
         db.collection("user").document(uid).collection("friend").document().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
