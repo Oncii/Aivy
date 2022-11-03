@@ -30,6 +30,7 @@
             android:layout_height="75dp"
             android:text="Settings"
             android:textSize="24dp"
+            android:textStyle="bold"
             android:fontFamily="@font/ubuntu"
             android:gravity="center"
             android:textColor="@color/white"

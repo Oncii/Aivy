@@ -88,11 +88,6 @@ public class Dashboard extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void intoMessages(View view){
-        Intent intent = new Intent(Dashboard.this, Messages.class);
-        startActivity(intent);
-    }
-
     public void intoSettings(View view){
         Intent intent = new Intent(Dashboard.this, Settings.class);
 

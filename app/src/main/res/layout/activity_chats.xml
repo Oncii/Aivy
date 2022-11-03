@@ -18,12 +18,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:onClick="backToFriendsFromChat"
             android:id="@+id/chat_back_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="25dp"
             android:layout_marginRight="90dp"
+            android:onClick="backToFriendsFromChat"
             android:src="@drawable/back_button"
             android:transitionName="set_back" />
 
@@ -38,65 +38,97 @@
             android:text="Chat"
             android:textColor="@color/white"
             android:textSize="24dp"
+            android:textStyle="bold"
             android:transitionName="set_banner" />
 
     </LinearLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/user_input_area"
+    <TextView
+        android:id="@+id/chat_user_name"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/chat_text_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvChats">
-
-        <EditText
-            android:id="@+id/chat_input_box"
-            android:layout_width="298dp"
-            android:layout_height="45dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="75dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/chat_box_background"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/send_button"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="24dp"
-            android:src="@drawable/send_button" />
-
-    </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvChats"
-        android:layout_width="396dp"
-        android:layout_height="633dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:paddingRight="18dp"
-        android:overScrollMode="never"
-        android:paddingLeft="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/user_input_area"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="17dp"
+        android:background="#0090E7"
+        android:fontFamily="@font/ubuntu"
+        android:paddingLeft="7dp"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upper_chat" />
+
+    <LinearLayout
+        android:id="@+id/middleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chat_user_name">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChats"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:overScrollMode="never"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chat_user_name"
+            tools:ignore="NotSibling" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chat_text_background"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/chat_input_box"
+            style="@style/MyDenseOutlined"
+            android:layout_width="302dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="4dp"
+            app:boxBackgroundColor="#F3FAFF"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusTopStart="14dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="302dp"
+                android:layout_height="48dp"
+                android:fontFamily="@font/ubuntu"
+                android:inputType="textMultiLine"
+                android:textSize="14dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/send_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:elevation="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/send_vector_btn"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/ubuntu"
+            android:textAllCaps="false"
+            android:textSize="10dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

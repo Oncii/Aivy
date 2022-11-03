@@ -32,6 +32,7 @@
             android:textSize="24dp"
             android:fontFamily="@font/ubuntu"
             android:gravity="center"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:paddingRight="10dp"
             android:background="@drawable/dashboard_title"

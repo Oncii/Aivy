@@ -11,11 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.text.LineBreaker;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,9 +28,13 @@ import android.widget.TextView;
 import com.example.aivy.model.Chat;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -41,13 +50,18 @@ public class Chats extends AppCompatActivity {
     private RecyclerView rvChat;
 
     //Variable for the EditText
-    private EditText chat_message;
+    private TextInputLayout chat_message;
 
     //Variable for the ImageView
-    private ImageView send_btn, chat_back_button;
+    private ImageView chat_back_button;
+
+    private Button send_btn;
 
     //Variable for the LinearLayout
     private LinearLayoutManager mLayoutManager;
+
+    //Variables for the TextView
+    TextView cht_ban, cht_user_name;
 
     FirestoreRecyclerAdapter<Chat, ChatViewHolder> adapter;
     String uid, idChatroom;
@@ -64,11 +78,20 @@ public class Chats extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         uid = currentUser.getUid();
 
+        //Assignment for the TextView
+        cht_user_name = findViewById(R.id.chat_user_name);
+
+        //Assignment for RecyclerView
         rvChat = findViewById(R.id.rvChats);
+
+        //Assignment for the TextInputLayout
         chat_message = findViewById(R.id.chat_input_box);
+
+        //Assignment for the Button
         send_btn = findViewById(R.id.send_button);
         chat_back_button = findViewById(R.id.chat_back_btn);
 
+        //To get String
         idChatroom = getIntent().getExtras().getString("idChatRoom");
         uidFriend = getIntent().getExtras().getString("uidFriend");
 
@@ -106,10 +129,25 @@ public class Chats extends AppCompatActivity {
         rvChat.setAdapter(adapter);
         adapter.startListening();
 
+        TextView cht_user_name = findViewById(R.id.chat_user_name);
+
+        db.collection("user").document(uidFriend).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if(documentSnapshot.exists()){
+                        String username = documentSnapshot.get("username", String.class);
+                        cht_user_name.setText(username);
+                    }
+                }
+            }
+        });
+
         send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String message = chat_message.getText().toString().trim();
+                String message = chat_message.getEditText().getText().toString().trim();
                 if(TextUtils.isEmpty(message)){
 
                 } else {
@@ -119,8 +157,8 @@ public class Chats extends AppCompatActivity {
                     dataMessage.put("uid", uid);
                     db.collection("chatRoom").document(idChatroom).collection("chat").document().set(dataMessage).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onSuccess(Void unused) {
-                            chat_message.setText("");
+                        public void onSuccess(Void aVoid) {
+                            chat_message.getEditText().setText("");
                         }
                     });
 
@@ -129,16 +167,18 @@ public class Chats extends AppCompatActivity {
         });
     }
 
+
     public class ChatViewHolder extends RecyclerView.ViewHolder {
         View mView;
         ConstraintLayout cl_message;
-        TextView txt_message;
+        TextView txt_message, cht_user_name;
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;
             cl_message = mView.findViewById(R.id.clMessage);
             txt_message = mView.findViewById(R.id.text_message);
+            cht_user_name = findViewById(R.id.chat_user_name);
         }
 
         public void setList(String uidMessage, String message, Context context) {
@@ -149,7 +189,9 @@ public class Chats extends AppCompatActivity {
                 constraintSet.setHorizontalBias(R.id.text_message, 1.0f);
                 constraintSet.applyTo(cl_message);
                 txt_message.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.message_background, context.getTheme()));
-                txt_message.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    txt_message.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+                }
                 txt_message.setText(message);
             } else{
                 ConstraintSet constraintSet = new ConstraintSet();
@@ -157,7 +199,9 @@ public class Chats extends AppCompatActivity {
                 constraintSet.setHorizontalBias(R.id.text_message, 0.0f);
                 constraintSet.applyTo(cl_message);
                 txt_message.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.friend_message_background, context.getTheme()));
-                txt_message.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    txt_message.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+                }
                 txt_message.setText(message);
             }
         }

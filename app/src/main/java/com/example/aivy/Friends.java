@@ -271,9 +271,4 @@ public class Friends extends AppCompatActivity {
         Intent intent = new Intent(Friends.this, Dashboard.class);
         startActivity(intent);
     }
-
-    public void intoMessagesFromFriends(View view){
-        Intent intent = new Intent(Friends.this, Messages.class);
-        startActivity(intent);
-    }
 }

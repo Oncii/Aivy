@@ -16,6 +16,7 @@
         <activity
             android:name=".Chats"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Aivy.noActionBar2">
             <meta-data
                 android:name="android.app.lib_name"
@@ -24,7 +25,7 @@
         <activity
             android:name=".Messages"
             android:exported="false"
-            android:theme="@style/Theme.Aivy.noActionBar.blackStatusBar">
+            android:theme="@style/Theme.Aivy.noActionBar2">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

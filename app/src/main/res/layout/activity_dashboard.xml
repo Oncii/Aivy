@@ -19,6 +19,7 @@
             android:layout_width="220dp"
             android:layout_height="75dp"
             android:text="Dashboard"
+            android:textStyle="bold"
             android:textSize="24dp"
             android:fontFamily="@font/ubuntu"
             android:gravity="center"
@@ -83,7 +84,6 @@
             android:transitionName="btn_2"/>
 
         <ImageView
-            android:onClick="intoMessages"
             android:id="@+id/dashboard_messages"
             android:layout_width="150dp"
             android:layout_height="150dp"
