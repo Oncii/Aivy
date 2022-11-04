@@ -2,11 +2,15 @@ package com.example.aivy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -33,6 +37,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -208,6 +214,26 @@ public class Friends extends AppCompatActivity {
                         if(documentSnapshot.exists()){
                             String username = documentSnapshot.get("username", String.class);
                             user_n.setText(username);
+
+                            String user_prof = documentSnapshot.get("user_profile_picture", String.class);
+
+                            if(user_prof != null){
+                                Picasso.get().load(user_prof).fit().into(user_p, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        Bitmap imageBitmap = ((BitmapDrawable) user_p.getDrawable()).getBitmap();
+                                        RoundedBitmapDrawable imageDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
+                                        imageDrawable.setCircular(true);
+                                        imageDrawable.setCornerRadius(Math.max(imageBitmap.getWidth(), imageBitmap.getHeight() / 2.0f));
+                                        user_p.setImageDrawable(imageDrawable);
+                                    }
+
+                                    @Override
+                                    public void onError(Exception e) {
+                                        user_p.setImageResource(R.drawable.sample_profile);
+                                    }
+                                });
+                            }
                         }
                     }
                 }

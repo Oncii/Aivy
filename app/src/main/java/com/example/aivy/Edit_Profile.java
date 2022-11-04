@@ -17,6 +17,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -132,15 +133,15 @@ public class Edit_Profile extends AppCompatActivity {
                         String password = document.get("password",String.class);
                         String email = document.get("email",String.class);
                         String id = document.get("id",String.class);
-                        String user_p = document.get("user_profile_picture", String.class);
+                        String user_prof = document.get("user_profile_picture", String.class);
 
                         edit_user.getEditText().setText(username);
                         edit_pass.getEditText().setText(password);
                         edit_em.getEditText().setText(email);
                         edit_rand_i.setText(id);
 
-                        if(user_p != null){
-                            Picasso.get().load(user_p).fit().into(edit_profile, new Callback() {
+                        if(user_prof != null){
+                            Picasso.get().load(user_prof).fit().into(edit_profile, new Callback() {
                                 @Override
                                 public void onSuccess() {
                                     Bitmap imageBitmap = ((BitmapDrawable) edit_profile.getDrawable()).getBitmap();
