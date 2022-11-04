@@ -74,7 +74,7 @@
             android:overScrollMode="never"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingBottom="70dp"
+            android:paddingBottom="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
@@ -97,9 +97,10 @@
             android:id="@+id/chat_input_box"
             style="@style/MyDenseOutlined"
             android:layout_width="302dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
+            android:paddingTop="4dp"
             android:paddingLeft="4dp"
             app:boxBackgroundColor="#F3FAFF"
             app:boxCornerRadiusBottomEnd="14dp"
@@ -109,7 +110,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="302dp"
-                android:layout_height="48dp"
+                android:layout_height="38dp"
                 android:fontFamily="@font/ubuntu"
                 android:inputType="textMultiLine"
                 android:textSize="14dp" />
@@ -121,6 +122,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:elevation="10dp"
+            android:paddingTop="8dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/send_vector_btn"

@@ -53,11 +53,11 @@
 
     <ImageView
         android:id="@+id/edit_profile_pic"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginTop="24dp"
-        android:layout_gravity="center"
-        android:src="@drawable/sample_profile"/>
+        android:src="@drawable/sample_profile"
+        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
